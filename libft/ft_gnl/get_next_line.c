@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/25 16:53:10 by cclaude           #+#    #+#             */
-/*   Updated: 2020/08/24 20:48:05 by macrespo         ###   ########.fr       */
+/*   Created: 2021/08/20 16:11:49 by llucente          #+#    #+#             */
+/*   Updated: 2021/08/20 16:12:59 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		newline_check(char *stock, int read_size)
+int	newline_check(char *stock, int read_size)
 {
 	int	i;
 
@@ -69,7 +69,8 @@ char	*stock_trim(char *stock)
 		i++;
 	while (stock[i++] != '\0')
 		j++;
-	if (!(trimmed = malloc(sizeof(char) * j + 1)))
+	trimmed = malloc(sizeof(char) * j + 1);
+	if (!(trimmed))
 		return (ft_memdel(stock));
 	i = 0;
 	j = 0;
@@ -93,7 +94,8 @@ char	*get_line(char *stock)
 	i = 0;
 	while (stock[i] != '\n' && stock[i] != '\0')
 		i++;
-	if (!(line = malloc(sizeof(char) * i + 1)))
+	line = malloc(sizeof(char) * i + 1);
+	if (!(line))
 		return (ft_memdel(stock));
 	i = 0;
 	while (stock[i] != '\n' && stock[i] != '\0')
@@ -105,7 +107,7 @@ char	*get_line(char *stock)
 	return (line);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	int			read_len;
 	char		buf[BUFFER_SIZE + 1];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/20 19:41:53 by cclaude           #+#    #+#             */
-/*   Updated: 2020/08/26 21:19:01 by cclaude          ###   ########.fr       */
+/*   Created: 2021/08/20 16:11:34 by llucente          #+#    #+#             */
+/*   Updated: 2021/08/20 16:11:35 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define IS_DIRECTORY 126
 # define UNKNOWN_COMMAND 127
 
-typedef struct	s_token
+typedef struct s_token
 {
 	char			*str;
 	int				type;
@@ -56,13 +56,13 @@ typedef struct	s_token
 	struct s_token	*next;
 }				t_token;
 
-typedef struct	s_env
+typedef struct s_env
 {
 	char			*value;
 	struct s_env	*next;
 }				t_env;
 
-typedef struct	s_mini
+typedef struct s_mini
 {
 	t_token			*start;
 	t_env			*env;
@@ -82,7 +82,7 @@ typedef struct	s_mini
 	int				no_exec;
 }				t_mini;
 
-typedef struct	s_sig
+typedef struct s_sig
 {
 	int				sigint;
 	int				sigquit;
@@ -90,7 +90,7 @@ typedef struct	s_sig
 	pid_t			pid;
 }				t_sig;
 
-typedef struct	s_expansions
+typedef struct s_expansions
 {
 	char			*new_arg;
 	int				i;
