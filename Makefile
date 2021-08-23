@@ -1,69 +1,155 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/08/23 15:59:57 by llucente          #+#    #+#              #
+#    Updated: 2021/08/23 16:08:46 by llucente         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# Name of the final executable
 NAME = minishell
 
-CC = clang
+# Project's directories
+SOURCEDIR := ./src
+HEADERSDIR := ./headers
+OBJECTSDIR := ./objects
+EXEC_FOLDER = execution
+LEX_FOLDER = lexer
+PARS_FOLDER = parse
+EXPA_FOLDER = expansion
+READ_FOLDER = readline
+LIBFT_HEADER = $(SOURCEDIR)/libft/libft.h
+LIBFT_FOLDER = $(SOURCEDIR)/libft
 
-CFLAGS = -Wall -Wextra -Werror -I includes/ -I libft/includes/
 
-LIBFT = -L libft -lft
+# Name of variables
+LIBFT_LIB = libft.a
+LIBS = -lncurses
+FLAGS = -Wall -Wextra -Werror
+RED = \033[1;31m
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+BLUE = \033[1;34m
+RESET = \033[0m
 
-HEADER = minishell.h
 
-BUILTINS = cd echo env exit export pwd unset
+# Execution files variable
+EXEC_FILES =  ft_cd.c \
+ft_check_path.c \
+ft_echo_pwd_env.c \
+ft_execution.c \
+ft_exit.c \
+ft_export.c \
+ft_init_env.c \
+ft_linked_lists.c \
+ft_linked_lists_rest.c \
+ft_pipes.c \
+ft_redirection.c \
+ft_unset.c \
+ft_utils.c
 
-ENV = env get_env sort_env shlvl
+# Lexer files variable
 
-EXEC = bin builtin exec
+LEX_FILES = lexer_get_tokens_op.c \
+lexer_get_tokens_word.c \
+lexer_get_tokens.c \
+lexer.c
 
-MAIN = minishell redir signal
+# Parse files variable
 
-PARSING = line tokens expansions
+PARS_FILES = check_syntax.c \
+check_token_continue.c \
+check_tokens.c \
+check_word.c \
+create_ast.c \
+create_nodes.c \
+destroy_nodes.c \
+parser.c
 
-TOOLS = fd free token type expansions parsing
+# Readline files variable
+READ_FILES = chars_list_rest.c \
+chars_list.c \
+get_input.c \
+history.c \
+line_nodes.c \
+readline.c \
+terminal_config.c 
 
-SRC = $(addsuffix .c, $(addprefix srcs/builtins/, $(BUILTINS))) \
-	  $(addsuffix .c, $(addprefix srcs/env/, $(ENV))) \
-	  $(addsuffix .c, $(addprefix srcs/exec/, $(EXEC))) \
-	  $(addsuffix .c, $(addprefix srcs/main/, $(MAIN))) \
-	  $(addsuffix .c, $(addprefix srcs/parsing/, $(PARSING))) \
-	  $(addsuffix .c, $(addprefix srcs/tools/, $(TOOLS))) \
+# Expansion files variable
+EXPA_FILES = expand_args.c \
+expand_command.c \
+expand_double_quotes_word.c \
+expand_no_quotes_word.c \
+expand_redirection.c \
+expand_special_params_in_quotes.c \
+expand_special_params.c \
+expand_word.c \
+expansion.c \
+utils_continue.c \
+utils.c
 
-OBJ = $(SRC:c=o)
+# Main file variable
+
+MAIN_FILE = last_arg.c \
+main.c \
+minishell.c 
+
+# Define objects for all sources
+OBJ_EXEC = $(addprefix $(OBJECTSDIR)/$(EXEC_FOLDER)/, $(EXEC_FILES:.c=.o))
+OBJ_LEX = $(addprefix $(OBJECTSDIR)/$(LEX_FOLDER)/, $(LEX_FILES:.c=.o))
+OBJ_EXPA = $(addprefix $(OBJECTSDIR)/$(EXPA_FOLDER)/, $(EXPA_FILES:.c=.o))
+OBJ_PARS = $(addprefix $(OBJECTSDIR)/$(PARS_FOLDER)/, $(PARS_FILES:.c=.o))
+OBJ_READ = $(addprefix $(OBJECTSDIR)/$(READ_FOLDER)/, $(READ_FILES:.c=.o))
+OBJ_MAIN = $(addprefix $(OBJECTSDIR)/, $(MAIN_FILE:.c=.o))
+OBJS := $(OBJ_EXEC) $(OBJ_LEX) $(OBJ_EXPA) $(OBJ_PARS) $(OBJ_READ) $(OBJ_MAIN)
+LIBFT_FILE := $(LIBFT_FOLDER)/$(LIBFT_LIB)
+
+# Name the compiler
+CC = gcc
+
+# OS specific part
+RM = rm -rf 
+RMDIR = rm -rf 
+MKDIR = mkdir -p
+MAKE = make -C
+ECHO = /bin/echo
+ERRIGNORE = 2>/dev/null
+
+
+.PHONY: all fclean 
 
 all: $(NAME)
+	
+libft:
+	@echo "$(BLUE)█████████████████████████ Making LIBFT █████████████████████████$(RESET)"
+	@$(MAKE) $(LIBFT_FOLDER)
+	@echo "$(BLUE)███████████████████████ Making minishell ███████████████████████$(RESET)"
 
-$(NAME): $(OBJ)
-	@echo "\n"
-	@make -C libft/
-	@echo "\033[0;32mCompiling minishell..."
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
-	@echo "\n\033[0mDone !"
+$(NAME): libft $(OBJS)
+	@$(CC) -I $(HEADERSDIR) -I $(LIBFT_FOLDER) $(OBJS) $(LIBFT_FOLDER)/$(LIBFT_LIB) $(LIBS) -o $@
+	@echo "$(BLUE)███████████████████████ Compiling is DONE ██████████████████████$(RESET)"
 
-%.o: %.c
-	@printf "\033[0;33mGenerating minishell objects... %-33.33s\r" $@
-	@${CC} ${CFLAGS} -c $< -o $@
+$(OBJECTSDIR)/%.o : $(SOURCEDIR)/%.c $(HEADERSDIR)/*.h
+	@$(MKDIR) $(dir $@)
+	@echo "$(BLUE)█ $(YELLOW)Compiling$(RESET) $<:\r\t\t\t\t\t\t\t$(GREEN){DONE}$(BLUE) █$(RESET)"
+	@$(CC) $(FLAGS) -I $(HEADERSDIR) -I $(LIBFT_HEADER) -o $@ -c $<
+
+# Remove all objects, dependencies and executable files generated during the build
 
 clean:
-	@echo "\033[0;31mCleaning libft..."
-	@make clean -C libft/
-	@echo "\nRemoving binaries..."
-	@rm -f $(OBJ)
-	@echo "\033[0m"
+	@echo "$(RED)deleting$(RESET): " $(OBJECTSDIR)
+	@$(RMDIR) $(OBJECTSDIR) $(ERRIGNORE)
+	@echo "$(RED)deleting$(RESET): " "libft objects"
+	@$(MAKE) $(LIBFT_FOLDER) clean
 
-fclean:
-	@echo "\033[0;31mCleaning libft..."
-	@make fclean -C libft/
-	@echo "\nDeleting objects..."
-	@rm -f $(OBJ)
-	@echo "\nDeleting executable..."
-	@rm -f $(NAME)
-	@echo "\033[0m"
+fclean: clean
+	@echo "$(RED)deleting$(RESET): " $(LIBFT_FOLDER)/$(LIBFT_LIB)
+	@$(RM) $(LIBFT_FOLDER)/$(LIBFT_LIB) $(ERRIGNORE)
+	@echo "$(RED)deleting$(RESET): " $(NAME)
+	@$(RM) $(NAME) $(ERRIGNORE)
 
-re: fclean all
-
-test: all
-	./minishell
-
-norm:
-	norminette $(SRC) includes/$(HEADER)
-
-.PHONY: clean fclean re test norm
+re: fclean $(NAME)
