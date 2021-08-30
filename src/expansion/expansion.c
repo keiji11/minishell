@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:06:12 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:06:13 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/30 15:48:01 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 void	ft_expande_simple_cmd(t_simple_cmd **cmd, t_env **env, char **last_env)
 {
 	t_args			*args;
-	t_args			*to_free;
 
-	to_free = NULL;
 	args = NULL;
 	ft_expand_arguments(cmd, env, last_env);
 	if ((*cmd)->command)

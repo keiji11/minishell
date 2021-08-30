@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:06:28 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:06:29 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/30 15:48:38 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ static int	ft_intlen(unsigned int n)
 
 char	*ft_int_to_string(int n)
 {
-	int		i;
 	int		len;
 	char	*str;
 
-	i = 0;
 	len = 0;
 	str = NULL;
 	if (n == 0)

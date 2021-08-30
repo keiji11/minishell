@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:10:13 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:10:14 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/30 15:51:24 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ t_simple_cmd	*ft_delete_empty_node_between(t_simple_cmd	**head,
 t_simple_cmd	*ft_delete_emty_simple_cmds(t_pipe_line **pipe_line)
 {
 	t_simple_cmd	*head;
-	t_simple_cmd	*prev;
 	t_simple_cmd	*temp;
 
-	prev = NULL;
 	head = (*pipe_line)->child;
 	temp = head;
 	while (temp != NULL && (!temp->command && temp->inside_quotes == 0)

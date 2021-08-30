@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:10:59 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:11:00 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/30 14:56:59 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ void	ft_after_equal(char *str, char **s, int i)
 char	**my_split(char *str)
 {
 	int		i;
-	int		j;
 	char	**s;
 
 	i = 0;
-	j = 0;
 	s = (char **)malloc(sizeof(char **) * 2);
 	s[0] = (char *)malloc(sizeof(char) * (carcts(str, '=') + 1));
 	s[1] = (char *)malloc(sizeof(char)

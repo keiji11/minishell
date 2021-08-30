@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:08:08 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:08:09 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/30 15:49:40 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,8 @@ void	ft_create_next_pipeline(t_token *tokens_list, t_command_list **head)
 t_command_list	*ft_create_ast(t_token *tokens_list)
 {
 	t_command_list	*head;
-	t_pipe_line		*current_pipeline;
-	int				pipe_count;
 
-	pipe_count = 0;
 	head = init_cmd_list();
-	current_pipeline = NULL;
 	while (tokens_list->type != NEWLINE)
 	{
 		if (head->childs == NULL)

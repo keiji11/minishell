@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:58:33 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 15:58:34 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/30 15:47:23 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <sys/stat.h>
+# include <sys/wait.h>
+# include <sys/types.h>
 # include <errno.h>
 # include <termios.h>
 # include <term.h>
@@ -65,10 +67,12 @@ typedef struct s_lines_list{
 	struct s_lines_list	*next;
 	struct s_lines_list	*prev;
 }				t_lines_list;
+
 typedef struct s_cursor{
 	int	line_postion;
 	int	col_position;
 }				t_cursor;
+
 typedef struct s_readline
 {
 	char		*term_type;
