@@ -6,14 +6,14 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:10:22 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:10:23 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/30 16:59:41 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 #include "../headers/execution.h"
 
-void	ft_tokinization_and_parsing(char **line,
+void	ft_tokenization_and_parsing(char **line,
 		t_pipe_line **current_pipe_line, int *status)
 {
 	t_token		*tokens_list;
@@ -89,7 +89,7 @@ void	ft_minishell(char **env)
 	{
 		show_prompt();
 		micro_read_line(&line, &status);
-		ft_tokinization_and_parsing(&line, &currnt_pipe_line, &status);
+		ft_tokenization_and_parsing(&line, &currnt_pipe_line, &status);
 		while (currnt_pipe_line)
 		{
 			status = ft_expande_and_execute_pipe_line(currnt_pipe_line,
