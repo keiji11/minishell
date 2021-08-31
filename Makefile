@@ -6,7 +6,7 @@
 #    By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/23 15:59:57 by llucente          #+#    #+#              #
-#    Updated: 2021/08/31 15:17:55 by llucente         ###   ########.fr        #
+#    Updated: 2021/08/31 15:23:50 by llucente         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ RESET = \033[0m
 EXEC_FILES =  ft_cd.c \
 ft_check_path.c \
 ft_echo_pwd_env.c \
-ft_execution.c \
+ft_exe.c \
 ft_exit.c \
 ft_export.c \
 ft_init_env.c \
@@ -62,7 +62,7 @@ lexer.c
 # Parse files variable
 
 PARS_FILES = check_syntax.c \
-check_token_continue.c \
+check_tkn_continue.c \
 check_tkns.c \
 check_word.c \
 create_ast.c \
