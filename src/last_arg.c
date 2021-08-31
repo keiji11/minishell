@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:10:04 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:10:05 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:44:08 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_get_last_arg__in_export(t_args	**args,
 	return (NULL);
 }
 
-char	*get_last_argument_or_command(t_pipe_line *current_pipe_line)
+char	*get_lst_arg_or_cmds(t_pipe_line *current_pipe_line)
 {
 	t_args	*args;
 

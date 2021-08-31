@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:58:08 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 15:58:09 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:48:42 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		ft_pipe(t_mini *mini, t_pipe_line *cmd, t_env **head);
 int		ft_redirection(t_mini *mini, t_redirection *redirect);
 void	ft_execve(t_simple_cmd *cmd, char **args, char **list);
 void	ft_add_or_replace(t_env **head, char **split, int join);
-int		ft_delete_first_node(t_env **head, t_env *temp, char *name);
+int		ft_del_first_node(t_env **head, t_env *temp, char *name);
 void	ft_exec_file(t_simple_cmd *cmd, t_env **head, char *path, int *status);
 void	ft_pipe_fork(t_simple_cmd *cmd, t_env **head, t_mini *mini,
 			int *command);

@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:09:44 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:09:45 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:49:34 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	micro_read_line(char **line, int *status)
 	struct termios	termios;
 	struct termios	old_termios;
 
-	ft_init_readline(&readline);
+	ft_init_rdline(&readline);
 	set_terminal(&termios, &old_termios, readline.term_fd);
 	ft_get_cursor_position(&readline.cursor.line_postion,
 		&readline.cursor.col_position);

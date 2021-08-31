@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:58:33 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/30 15:47:23 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:49:34 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,8 +306,8 @@ t_lines_list	*ft_destory_node(t_lines_list *node);
 t_lines_list	*ft_destroy_history(t_lines_list *lines_list);
 void			ft_print_char_list(t_char_list *chars_list);
 
-char			*get_last_argument_or_command(t_pipe_line *current_pipe_line);
-t_simple_cmd	*ft_delete_emty_simple_cmds(t_pipe_line **pipe_line);
+char			*get_lst_arg_or_cmds(t_pipe_line *current_pipe_line);
+t_simple_cmd	*ft_del_empty_simple_cmds(t_pipe_line **pipe_line);
 t_lines_list	*push_curr_node_to_list(t_lines_list **list,
 					t_lines_list *current, int history);
 char			*ft_return_line(t_readline readline);
@@ -327,7 +327,7 @@ char			*ft_get_input(t_readline readline, int *status,
 					struct termios old_term);
 int				add_curr_node_to_history(t_readline *readline,
 					t_lines_list *current, t_lines_list **history);
-void			ft_init_readline(t_readline *readline);
+void			ft_init_rdline(t_readline *readline);
 void			set_terminal(struct termios *termios, struct termios *old,
 					int fd);
 void			reset_terminal(struct termios old_termios, int fd);

@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:10:13 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/30 15:51:24 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:45:00 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	show_prompt(void)
 	write(1, RESET, ft_strlen(RESET));
 }
 
-t_simple_cmd	*ft_delete_empty_node_between(t_simple_cmd	**head,
+t_simple_cmd	*ft_del_empty_node_btwn(t_simple_cmd	**head,
 		t_simple_cmd **temp)
 {
 	t_simple_cmd	*prev;
@@ -48,7 +48,7 @@ t_simple_cmd	*ft_delete_empty_node_between(t_simple_cmd	**head,
 	return (*head);
 }
 
-t_simple_cmd	*ft_delete_emty_simple_cmds(t_pipe_line **pipe_line)
+t_simple_cmd	*ft_del_empty_simple_cmds(t_pipe_line **pipe_line)
 {
 	t_simple_cmd	*head;
 	t_simple_cmd	*temp;
@@ -62,7 +62,7 @@ t_simple_cmd	*ft_delete_emty_simple_cmds(t_pipe_line **pipe_line)
 		ft_destroy_simple(temp);
 		temp = head;
 	}
-	*head = *ft_delete_empty_node_between(&head, &temp);
+	*head = *ft_del_empty_node_btwn(&head, &temp);
 	return (head);
 }
 

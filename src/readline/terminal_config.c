@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:09:51 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:09:52 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:49:34 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_move_cursor_and_clear(t_cursor cursor)
 	ft_putstr_fd(tgetstr("cd", NULL), 1);
 }
 
-void	ft_init_readline(t_readline *readline)
+void	ft_init_rdline(t_readline *readline)
 {
 	int	load_term;
 

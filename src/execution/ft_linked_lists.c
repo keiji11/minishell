@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:01:46 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:01:47 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 12:48:42 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_add_to_list(t_env **head, t_env *newnode)
 		*head = newnode;
 }
 
-int	ft_delete_first_node(t_env **head, t_env *temp, char *name)
+int	ft_del_first_node(t_env **head, t_env *temp, char *name)
 {
 	if (!(ft_strcmp(temp->name, name)))
 	{
@@ -64,7 +64,7 @@ void	ft_delete_from_list(t_env **head, char *name)
 	temp = *head;
 	if (*head == NULL)
 		return ;
-	if (ft_delete_first_node(head, temp, name))
+	if (ft_del_first_node(head, temp, name))
 		return ;
 	while (temp != NULL && ft_strcmp(temp->name, name) != 0)
 	{
