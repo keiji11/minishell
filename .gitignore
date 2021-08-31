@@ -50,3 +50,8 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Exe n launch.json
+minishell
+launch.json
+*.json
