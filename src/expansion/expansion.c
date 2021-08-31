@@ -6,22 +6,22 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:06:12 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/30 15:48:01 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:32:30 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/execution.h"
 
-void	ft_expande_simple_cmd(t_simple_cmd **cmd, t_env **env, char **last_env)
+void	ft_expnd_simple_cmd(t_simple_cmd **cmd, t_env **env, char **last_env)
 {
 	t_args			*args;
 
 	args = NULL;
-	ft_expand_arguments(cmd, env, last_env);
+	ft_expnd_arguments(cmd, env, last_env);
 	if ((*cmd)->command)
-		ft_expand_command(cmd, env, last_env);
-	ft_expande_redirection(cmd, env, last_env);
+		ft_expnd_command(cmd, env, last_env);
+	ft_expnd_redtion(cmd, env, last_env);
 	args = (*cmd)->args;
 	if (args)
 		ft_delete_emty_args_nodes(&(*cmd)->args);
@@ -30,7 +30,7 @@ void	ft_expande_simple_cmd(t_simple_cmd **cmd, t_env **env, char **last_env)
 	ft_return_spaces(cmd);
 }
 
-void	ft_expanding(t_pipe_line *pipe_line, t_env **env, char **last_env)
+void	ft_expnding(t_pipe_line *pipe_line, t_env **env, char **last_env)
 {
 	t_simple_cmd	*current_cmd;
 	t_simple_cmd	*head_cmd;
@@ -42,7 +42,7 @@ void	ft_expanding(t_pipe_line *pipe_line, t_env **env, char **last_env)
 	while (head_cmd)
 	{
 		current_cmd = head_cmd;
-		ft_expande_simple_cmd(&current_cmd, env, last_env);
+		ft_expnd_simple_cmd(&current_cmd, env, last_env);
 		head_cmd = head_cmd->next;
 	}
 }

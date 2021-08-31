@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:10:22 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/31 15:17:55 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:32:30 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_exp_n_exe_pipe_line(t_pipe_line *current_pipe_line,
 	if (last_arg_exit_sts[0])
 		free(last_arg_exit_sts[0]);
 	last_arg_exit_sts[0] = ft_int_to_string(*status);
-	ft_expanding(current_pipe_line, env_list, last_arg_exit_sts);
+	ft_expnding(current_pipe_line, env_list, last_arg_exit_sts);
 	current_pipe_line->child = ft_del_empty_simple_cmds(&current_pipe_line);
 	if (current_pipe_line->child)
 	{

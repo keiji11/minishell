@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_word.c                                      :+:      :+:    :+:   */
+/*   expnd_word.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:06:05 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:06:06 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:32:17 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/execution.h"
 
-int	check_exiting_of_qoutes(char *str)
+int	check_exiting_of_quotes(char *str)
 {
 	int	i;
 
@@ -31,26 +31,26 @@ int	check_exiting_of_qoutes(char *str)
 	return (0);
 }
 
-void	ft_expand_squence_of_dollar_sign(char *str, int *i, char **expanded)
+void	ft_expnd_squence_of_dollar_sign(char *str, int *i, char **expndd)
 {
 	char	*tmp1;
 	char	*tmp;
 
-	tmp1 = *expanded;
+	tmp1 = *expndd;
 	tmp = ft_substr(str, *i, 2);
-	*expanded = ft_strjoin(*expanded, tmp);
+	*expndd = ft_strjoin(*expndd, tmp);
 	free(tmp1);
 	free(tmp);
 	*i += 2;
 }
 
-void	ft_replace_env_by_value(char *str, int *i, char **expanded,
+void	ft_replace_env_by_value(char *str, int *i, char **expndd,
 		char **env_value)
 {
 	char	*tmp;
 
-	tmp = *expanded;
-	*expanded = ft_strjoin(*expanded, *env_value);
+	tmp = *expndd;
+	*expndd = ft_strjoin(*expndd, *env_value);
 	free(*env_value);
 	free(tmp);
 	if (str[*i] == '$')
@@ -74,7 +74,7 @@ void	ft_skip_characters_env_not_exist(char *str, int *i)
 		(*i)++;
 }
 
-void	ft_expande_word(char **string, t_env **env_list, char **last_env,
+void	ft_expnd_word(char **string, t_env **env_list, char **last_env,
 		int redirection)
 {
 	t_expansion	expd;
@@ -82,21 +82,21 @@ void	ft_expande_word(char **string, t_env **env_list, char **last_env,
 
 	i = 0;
 	expd.word = *string;
-	expd.expanded = NULL;
+	expd.expndd = NULL;
 	ft_replace_tilde(&expd.word);
 	while (expd.word[i])
 	{
 		if (expd.word[i] == '\\')
-			ft_expand_backslashes(expd.word, &i, &expd.expanded);
+			ft_expnd_backslashes(expd.word, &i, &expd.expndd);
 		else if (expd.word[i] == '\'')
-			ft_remove_single_quotes(expd.word, &i, &expd.expanded);
+			ft_rmv_single_quotes(expd.word, &i, &expd.expndd);
 		else if (expd.word[i] == '"')
-			expd.expanded = ft_expand_double_quotes(expd, &i, env_list,
+			expd.expndd = ft_expnd_double_quotes(expd, &i, env_list,
 					last_env);
 		else if (expd.word[i] == '$')
-			ft_expand_env_variable(&expd, &i, env_list, last_env);
+			ft_expnd_env_variable(&expd, &i, env_list, last_env);
 		else
-			ft_get_charachter(expd.word, &i, &expd.expanded);
+			ft_get_char(expd.word, &i, &expd.expndd);
 	}
-	check_word_expand_redtion(redirection, &expd.expanded, &expd.word, string);
+	check_word_expnd_redtion(redirection, &expd.expndd, &expd.word, string);
 }

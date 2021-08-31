@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:58:08 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/31 12:48:42 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:25:39 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXECUTION_H
 
 # include "minishell.h"
+
 typedef struct s_mini
 {
 	int	*fd;

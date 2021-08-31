@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:09:20 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:09:21 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:34:07 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ int	ft_handle_ctrl_c_input(t_lines_list **current, int *status)
 {
 	if (*current && (*current)->char_list == NULL
 		&& (*current)->origin_char_list == NULL && (*current)->prev == NULL)
-		g_vars.history = ft_delete_node_from_list((*current));
+		g_vars.history = ft_del_node_from_list((*current));
 	else
 	{
 		ft_delete_char_list((*current)->char_list);
 		(*current)->char_list = ft_copy_char_list((*current)->origin_char_list);
-		g_vars.history = ft_delete_node_from_list(g_vars.history);
+		g_vars.history = ft_del_node_from_list(g_vars.history);
 	}
 	*status = 1;
 	ft_putstr_fd("\n", 1);

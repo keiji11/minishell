@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_non_qoutes_word.c                           :+:      :+:    :+:   */
+/*   expnd_no_quotes_word.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zjamali <zjamali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 19:39:44 by zjamali           #+#    #+#             */
-/*   Updated: 2021/06/10 20:10:08 by zjamali          ###   ########.fr       */
+/*   Updated: 2021/08/31 15:32:17 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/execution.h"
 
-void	ft_remove_single_quotes(char *str, int *i, char **expanded)
+void	ft_rmv_single_quotes(char *str, int *i, char **expndd)
 {
 	int		j;
 	char	*tmp1;
@@ -23,28 +23,28 @@ void	ft_remove_single_quotes(char *str, int *i, char **expanded)
 	j = *i;
 	while (str[j] != '\'')
 		j++;
-	tmp1 = *expanded;
+	tmp1 = *expndd;
 	tmp = ft_substr(str, *i, j - *i);
-	*expanded = ft_strjoin(*expanded, tmp);
+	*expndd = ft_strjoin(*expndd, tmp);
 	free(tmp);
 	free(tmp1);
 	*i = j + 1;
 }
 
-void	ft_get_charachter(char *str, int *i, char **expanded)
+void	ft_get_char(char *str, int *i, char **expndd)
 {
 	char	*tmp1;
 	char	*tmp;
 
-	tmp1 = *expanded;
+	tmp1 = *expndd;
 	tmp = ft_substr(str, *i, 1);
-	*expanded = ft_strjoin(*expanded, tmp);
+	*expndd = ft_strjoin(*expndd, tmp);
 	free(tmp1);
 	free(tmp);
 	(*i)++;
 }
 
-void	ft_expand_backslashes(char *str, int *i, char **expanded)
+void	ft_expnd_backslashes(char *str, int *i, char **expndd)
 {
 	int		j;
 	char	*tmp1;
@@ -55,9 +55,9 @@ void	ft_expand_backslashes(char *str, int *i, char **expanded)
 	j = *i;
 	while (str[j] == '\\')
 	{
-		tmp1 = *expanded;
+		tmp1 = *expndd;
 		tmp = ft_substr(str, j + 1, 1);
-		*expanded = ft_strjoin(*expanded, tmp);
+		*expndd = ft_strjoin(*expndd, tmp);
 		free(tmp1);
 		free(tmp);
 		j += 2;
@@ -65,7 +65,7 @@ void	ft_expand_backslashes(char *str, int *i, char **expanded)
 	*i = j;
 }
 
-void	ft_expand_underscore_if_exist(char *str, int i, char **env_value,
+void	ft_expnd_underscore_if_exist(char *str, int i, char **env_value,
 		char *last_argmnt)
 {
 	if (str[i + 1] == '_' && str[i + 2] == '\0' && last_argmnt)
@@ -76,26 +76,26 @@ void	ft_expand_underscore_if_exist(char *str, int i, char **env_value,
 	}
 }
 
-void	ft_expand_env_variable(t_expansion *expd, int *i, t_env **env_list,
+void	ft_expnd_env_variable(t_expansion *expd, int *i, t_env **env_list,
 		char **last_env)
 {
 	if (expd->word[*i + 1] == '$')
-		ft_expand_squence_of_dollar_sign(expd->word, i, &(expd->expanded));
+		ft_expnd_squence_of_dollar_sign(expd->word, i, &(expd->expndd));
 	else
 	{
 		expd->tmp = get_env_variable_value(expd->word + *i, env_list);
 		if (expd->tmp)
 		{
-			ft_expand_underscore_if_exist(expd->word, *i, &(expd->tmp),
+			ft_expnd_underscore_if_exist(expd->word, *i, &(expd->tmp),
 				last_env[1]);
-			ft_replace_env_by_value(expd->word, i, &expd->expanded,
+			ft_replace_env_by_value(expd->word, i, &expd->expndd,
 				&(expd->tmp));
 		}
 		else if (i == 0 || expd->word[*i - 1] != '$')
-			ft_expande_special_params(expd->word, i, &expd->expanded,
+			ft_expnd_special_params(expd->word, i, &expd->expndd,
 				last_env[0]);
 		else
-			ft_skip_characters_non_env_variable(expd->word, i,
-				&(expd->expanded), 0);
+			ft_skip_char_non_env_var(expd->word, i,
+				&(expd->expndd), 0);
 	}
 }

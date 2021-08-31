@@ -6,13 +6,13 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:08:01 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:08:02 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:28:47 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-int	count_bachslashes(char *word, int *index, int back_slash)
+int	count_backslashes(char *word, int *index, int back_slash)
 {
 	while (word[*index] == 92)
 	{

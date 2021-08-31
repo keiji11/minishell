@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:09:27 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:09:28 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:34:07 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	add_curr_node_to_history(t_readline *readline,
 	new_line_node->origin_char_list = ft_copy_char_list(current->char_list);
 	ft_delete_char_list(current->char_list);
 	current->char_list = ft_copy_char_list(current->origin_char_list);
-	*history = ft_delete_node_from_list(*history);
+	*history = ft_del_node_from_list(*history);
 	if (new_line_node && new_line_node->char_list
 		&& new_line_node->char_list->value != 0)
 	{

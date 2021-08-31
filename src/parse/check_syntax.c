@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:07:42 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/31 15:17:55 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:28:47 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_check_closing_quotes(char *word)
 	quote = 0;
 	while (word[i])
 	{
-		back_slash = count_bachslashes(word, &i, back_slash);
+		back_slash = count_backslashes(word, &i, back_slash);
 		if (quote == 0 && word[i] == 34)
 			quote = ft_get_first_double_quotes(word, &i, &back_slash);
 		else if (quote == 0 && word[i] == '\'')

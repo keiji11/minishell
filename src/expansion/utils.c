@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:06:28 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/30 15:48:38 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:29:14 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	ft_replace_tilde(char **string)
 	*string = word;
 }
 
-void	ft_repalce_space_by_tab(t_simple_cmd **cmd, int args_or_cmd)
+void	ft_replace_space_by_tab(t_simple_cmd **cmd, int args_or_cmd)
 {
 	t_args	*args;
 	int		i;

@@ -6,7 +6,7 @@
 #    By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/23 15:59:57 by llucente          #+#    #+#              #
-#    Updated: 2021/08/31 15:23:50 by llucente         ###   ########.fr        #
+#    Updated: 2021/08/31 15:32:30 by llucente         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,14 +80,14 @@ readline.c \
 terminal_config.c 
 
 # Expansion files variable
-EXPA_FILES = expand_args.c \
-expand_command.c \
-expand_double_quotes_word.c \
-expand_no_quotes_word.c \
-expand_redirection.c \
-expand_special_params_in_quotes.c \
-expand_special_params.c \
-expand_word.c \
+EXPA_FILES = expnd_args.c \
+expnd_command.c \
+expnd_double_quotes_word.c \
+expnd_no_quotes_word.c \
+expnd_redirection.c \
+expnd_special_params_in_quotes.c \
+expnd_special_params.c \
+expnd_word.c \
 expansion.c \
 utils_continue.c \
 utils.c

@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:58:33 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/31 15:17:55 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:34:07 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_char_list{
 	char				value;
 	int					len;
 	struct s_char_list	*next;
-}				t_char_list;
+}			   t_char_list;
 
 typedef struct s_lines_list{
 	char				value;
@@ -66,12 +66,12 @@ typedef struct s_lines_list{
 	t_char_list			*origin_char_list;
 	struct s_lines_list	*next;
 	struct s_lines_list	*prev;
-}				t_lines_list;
+}			   t_lines_list;
 
 typedef struct s_cursor{
 	int	line_postion;
 	int	col_position;
-}				t_cursor;
+}			   t_cursor;
 
 typedef struct s_readline
 {
@@ -83,9 +83,9 @@ typedef struct s_readline
 	char		*path;
 	char		*line;
 	t_cursor	cursor;
-}t_readline;
+}			   t_readline;
 
-/******* LESXER **********/
+/******* LEXER **********/
 typedef enum e_token_type{
 	NONE,
 	WORD,
@@ -95,7 +95,7 @@ typedef enum e_token_type{
 	DOUBLE_GREAT,
 	PIPE,
 	NEWLINE,
-}			t_token_type;
+}			 t_token_type;
 
 typedef struct s_token
 {
@@ -103,14 +103,14 @@ typedef struct s_token
 	t_token_type	type;
 	char			*value;
 	struct s_token	*next;
-}				t_token;
+}			   t_token;
 
 /******* PARSER **********/
 typedef enum e_redirection_type{
 	RE_GREAT,
 	RE_DOUBLE_GREAT,
 	RE_LESS,
-}			t_redirection_type;
+}			 t_redirection_type;
 
 typedef struct s_redirection
 {
@@ -119,13 +119,13 @@ typedef struct s_redirection
 	int						inside_quotes;
 	char					*file_name;
 	struct s_redirection	*next;
-}				t_redirection;
+}			   t_redirection;
 
 typedef struct s_args{
 	int				inside_quotes;
 	char			*value;
 	struct s_args	*next;
-}				t_args;
+}			   t_args;
 
 typedef struct s_simple_cmd
 {
@@ -134,20 +134,20 @@ typedef struct s_simple_cmd
 	t_args				*args;
 	t_redirection		*redirections;
 	struct s_simple_cmd	*next;
-}				t_simple_cmd;
+}			   t_simple_cmd;
 
 typedef struct s_pipe_line
 {
 	int					simple_cmd_count;
 	struct s_pipe_line	*next;
 	t_simple_cmd		*child;
-}				t_pipe_line;
+}			   t_pipe_line;
 
 typedef struct s_command_list
 {
 	int			pipe_line_count;
 	t_pipe_line	*childs;
-}				t_command_list;
+}			   t_command_list;
 
 /***** ENV LIST ******/
 
@@ -170,10 +170,10 @@ t_g_vars	g_vars;
 typedef struct s_expansion
 {
 	char	*word;
-	char	*expanded;
+	char	*expndd;
 	char	*tmp1;
 	char	*tmp;
-}				t_expansion;
+}			   t_expansion;
 
 /* ************************************************************************** */
 /*                                 LEXER                                      */
@@ -226,7 +226,7 @@ void			ft_print_systax_error(t_token *token);
 int				ft_check_backslash(char *word);
 int				ft_check_backslash(char *word);
 int				ft_check_closing_quotes(char *word);
-int				count_bachslashes(char *word, int *index, int back_slash);
+int				count_backslashes(char *word, int *index, int back_slash);
 int				ft_get_first_double_quotes(char *word, int *index,
 					int *back_slash);
 int				ft_get_first_single_quotes(char *word, int *index,
@@ -240,59 +240,59 @@ void			ft_get_close_single_quotes(int *index, int *back_slash,
 /*                                 EXPANSION                                  */
 /* ************************************************************************** */
 
-void			ft_expanding(t_pipe_line *pipe_line, t_env **env,
+void			ft_expnding(t_pipe_line *pipe_line, t_env **env,
 					char **last_env);
-void			ft_repalce_space_by_tab(t_simple_cmd **cmd, int args_or_cmd);
+void			ft_replace_space_by_tab(t_simple_cmd **cmd, int args_or_cmd);
 void			ft_replace_tilde(char **string);
 char			*get_env_variable_value(char *env_variable, t_env **env);
 char			*ft_int_to_string(int n);
 
-void			ft_expande_word(char **string, t_env **env_list,
+void			ft_expnd_word(char **string, t_env **env_list,
 					char **last_env, int redirection);
 void			ft_handle_empty_command(t_simple_cmd **cmd);
-void			ft_expand_command(t_simple_cmd **cmd, t_env **env,
+void			ft_expnd_command(t_simple_cmd **cmd, t_env **env,
 					char **last_env);
-void			ft_expande_redirection(t_simple_cmd **cmd, t_env **env,
+void			ft_expnd_redtion(t_simple_cmd **cmd, t_env **env,
 					char **last_env);
-void			check_word_expand_redtion(int redirection, char **expanded,
+void			check_word_expnd_redtion(int redirection, char **expndd,
 					char **word, char **string);
 int				check_end_of_string(char str, int inside_quotes);
 void			ft_delete_emty_args_nodes(t_args **args);
 void			ft_return_spaces(t_simple_cmd **cmd);
 void			ft_assign_value_to_arg(char	**splited, int i,
 					t_args **new_args);
-void			ft_expand_arguments(t_simple_cmd **cmd, t_env **env,
+void			ft_expnd_arguments(t_simple_cmd **cmd, t_env **env,
 					char **last_env);
-int				check_exiting_of_qoutes(char *str);
-void			ft_expand_squence_of_dollar_sign(char *str, int *i,
-					char **expanded);
+int				check_exiting_of_quotes(char *str);
+void			ft_expnd_squence_of_dollar_sign(char *str, int *i,
+					char **expndd);
 
-void			ft_replace_env_by_value(char *str, int *i, char **expanded,
+void			ft_replace_env_by_value(char *str, int *i, char **expndd,
 					char **env_value);
-void			ft_expande_special_params(char *str, int *i, char **expanded,
+void			ft_expnd_special_params(char *str, int *i, char **expndd,
 					char *exit_status);
-void			ft_skip_characters_non_env_variable(char *str, int *i,
-					char **expanded, int inside_quotes);
+void			ft_skip_char_non_env_var(char *str, int *i,
+					char **expndd, int inside_quotes);
 
-void			ft_expand_other_special_params(char *str, int *i,
-					char **expanded);
+void			ft_expnd_other_special_params(char *str, int *i,
+					char **expndd);
 
-void			ft_expande_special_param_in_dble_g(char *str, int *i,
-					char **expanded, char *exit_status);
-void			ft_get_charachter(char *str, int *i, char **expanded);
-void			ft_expand_exit_status(int *i, char **expanded,
+void			ft_expnd_special_param_in_dble_g(char *str, int *i,
+					char **expndd, char *exit_status);
+void			ft_get_char(char *str, int *i, char **expndd);
+void			ft_expnd_exit_status(int *i, char **expndd,
 					char *exit_status);
 void			ft_skip_characters_env_not_exist(char *str, int *i);
-void			get_dollar_sign(char *str, int *i, char **expanded);
-void			ft_digit_env(char *str, int *i, char **expanded);
-void			ft_expand_back_slash(int *i, char **expanded);
-void			ft_expand_backslashes(char *str, int *i, char **expanded);
-char			*ft_expand_double_quotes(t_expansion expd, int *i,
+void			get_dollar_sign(char *str, int *i, char **expndd);
+void			ft_digit_env(char *str, int *i, char **expndd);
+void			ft_expnd_back_slash(int *i, char **expndd);
+void			ft_expnd_backslashes(char *str, int *i, char **expndd);
+char			*ft_expnd_double_quotes(t_expansion expd, int *i,
 					t_env **env_list, char **last_env);
-void			ft_remove_single_quotes(char *str, int *i, char **expanded);
-void			ft_expand_env_variable_in_dble_qte(t_expansion *expd, int *j,
+void			ft_rmv_single_quotes(char *str, int *i, char **expndd);
+void			ft_expnd_env_variable_in_dble_qte(t_expansion *expd, int *j,
 					t_env **env_list, char **last_env);
-void			ft_expand_env_variable(t_expansion *expd, int *i,
+void			ft_expnd_env_variable(t_expansion *expd, int *i,
 					t_env **env_list, char **last_env);
 
 /* ************************************************************************** */
@@ -316,7 +316,7 @@ t_lines_list	*ft_down_in_history(t_readline *readline,
 t_lines_list	*ft_up_in_history(t_readline *readline, t_lines_list **history);
 t_lines_list	*ft_create_line_node(void);
 char			*create_line_from_chars_list(t_char_list *char_list);
-t_lines_list	*ft_delete_node_from_list(t_lines_list *current);
+t_lines_list	*ft_del_node_from_list(t_lines_list *current);
 t_char_list		*ft_copy_char_list(t_char_list *char_list);
 t_lines_list	*ft_handle_history_buttons(long character, t_readline readline,
 					t_lines_list *current);

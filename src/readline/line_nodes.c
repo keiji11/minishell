@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:09:34 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:09:35 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:34:07 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_lines_list	*ft_destory_node(t_lines_list *node)
 	return (NULL);
 }
 
-t_lines_list	*ft_delete_node_from_list(t_lines_list *current)
+t_lines_list	*ft_del_node_from_list(t_lines_list *current)
 {
 	t_lines_list	*next_line;
 
