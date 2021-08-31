@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:07:50 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:07:51 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:17:55 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_print_systax_error(t_token *token)
 	ft_putstr_fd("'\n", 1);
 }
 
-int	check_redirection(t_token *tokens_list, t_token *token, int *status)
+int	check_redirection(t_token *tkns_list, t_token *token, int *status)
 {
 	int	result;
 
@@ -27,7 +27,7 @@ int	check_redirection(t_token *tokens_list, t_token *token, int *status)
 	if (token->type != WORD)
 	{
 		ft_print_systax_error(token);
-		ft_destoy_token_list(tokens_list);
+		ft_destoy_token_list(tkns_list);
 		*status = 258;
 		result = 1;
 	}

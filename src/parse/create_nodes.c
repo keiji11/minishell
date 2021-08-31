@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:08:15 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:08:16 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:17:55 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,30 +61,30 @@ t_simple_cmd	*ft_insert_command_and_arguments(t_simple_cmd **cmd,
 	return (*cmd);
 }
 
-t_simple_cmd	*ft_create_simple_cmd(t_token **tokens)
+t_simple_cmd	*ft_create_simple_cmd(t_token **tkns)
 {
 	t_simple_cmd	*cmd;
 	int				r;
 
 	r = 0;
 	cmd = ft_init_simple_cmd();
-	while ((*tokens)->type != PIPE && (*tokens)->type != SEMI
-		&& (*tokens)->type != NEWLINE)
+	while ((*tkns)->type != PIPE && (*tkns)->type != SEMI
+		&& (*tkns)->type != NEWLINE)
 	{
-		if ((*tokens)->type == GREAT || (*tokens)->type == DOUBLE_GREAT
-			|| (*tokens)->type == LESS)
+		if ((*tkns)->type == GREAT || (*tkns)->type == DOUBLE_GREAT
+			|| (*tkns)->type == LESS)
 		{
 			cmd->redirections = ft_insert_redirection(cmd->redirections,
-					tokens, r);
+					tkns, r);
 			r++;
 		}
-		else if ((*tokens)->type == WORD)
+		else if ((*tkns)->type == WORD)
 		{
-			cmd = ft_insert_command_and_arguments(&cmd, *tokens);
-			(*tokens) = (*tokens)->next;
+			cmd = ft_insert_command_and_arguments(&cmd, *tkns);
+			(*tkns) = (*tkns)->next;
 		}
 		else
-			(*tokens) = (*tokens)->next;
+			(*tkns) = (*tkns)->next;
 	}
 	return (cmd);
 }

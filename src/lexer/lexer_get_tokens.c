@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_get_tokens.c                                 :+:      :+:    :+:   */
+/*   lexer_get_tkns.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -30,15 +30,15 @@ static int	check_the_beginning_of_word(int c)
 		return (0);
 }
 
-static void	add_token_and_increament_index(t_token *tokens_list, char *word,
+static void	add_token_and_increament_index(t_token *tkns_list, char *word,
 			int *table, int j)
 {
-	add_token(tokens_list, WORD, word, table[3]);
+	add_token(tkns_list, WORD, word, table[3]);
 	table[1] = j;
 	table[3]++;
 }
 
-void	ft_get_word(t_token *tokens_list, char *line, int *table)
+void	ft_get_word(t_token *tkns_list, char *line, int *table)
 {
 	int		quoting;
 	char	*word;
@@ -64,5 +64,5 @@ void	ft_get_word(t_token *tokens_list, char *line, int *table)
 				break ;
 		}
 	}
-	add_token_and_increament_index(tokens_list, word, table, j);
+	add_token_and_increament_index(tkns_list, word, table, j);
 }

@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:58:33 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/31 12:49:34 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:17:55 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,11 +180,11 @@ typedef struct s_expansion
 /* ************************************************************************** */
 
 t_token			*ft_lexer(char *line);
-void			ft_get_word(t_token *tokens_list, char *line, int *table);
-void			get_space_pipe_semi_redir(t_token *tokens_list,
+void			ft_get_word(t_token *tkns_list, char *line, int *table);
+void			get_space_pipe_semi_redir(t_token *tkns_list,
 					char *line, int *j, int *index);
-void			ft_destoy_token_list(t_token *tokens_list);
-void			print_tokens(t_token *tokens_list);
+void			ft_destoy_token_list(t_token *tkns_list);
+void			print_tkns(t_token *tkns_list);
 void			add_token(t_token *token_list, t_token_type type,
 					char *content, int index);
 char			*ft_get_words(char *line, int *j, char *word, int *quoting);
@@ -193,34 +193,34 @@ char			*ft_get_words(char *line, int *j, char *word, int *quoting);
 /*                                 PARSER                                     */
 /* ************************************************************************** */
 
-t_command_list	*ft_parser(t_token *tokens_list, int *status);
+t_command_list	*ft_parser(t_token *tkns_list, int *status);
 void			ft_destroy_ast(t_command_list *cmd_list);
-int				ft_check_syntax(t_token *tokens_list, int *status);
+int				ft_check_syntax(t_token *tkns_list, int *status);
 void			ft_print_pipeline_cmd(t_pipe_line *pipe_line);
 void			ft_print_cmd_list(t_command_list *cmd_list);
 void			ft_print_simple_cmd(t_simple_cmd *cmd);
 char			*ft_int_to_string(int n);
 void			ft_destroy_simple(t_simple_cmd *cmd);
-t_command_list	*ft_create_ast(t_token *tokens_list);
+t_command_list	*ft_create_ast(t_token *tkns_list);
 t_command_list	*init_cmd_list(void);
-t_simple_cmd	*ft_create_simple_cmd(t_token **tokens);
+t_simple_cmd	*ft_create_simple_cmd(t_token **tkns);
 void			ft_insert_simple_cmd(t_simple_cmd *head,
 					t_simple_cmd *current_cmd);
 t_redirection	*ft_insert_redirection(t_redirection *redirection,
-					t_token **tokens, int index);
+					t_token **tkns, int index);
 t_args			*ft_create_arg(char *value);
 void			ft_insert_arg(t_args *head, t_args *current_args);
-int				check_tokn_next_semi(t_token *tokens_list, t_token *token,
+int				check_tokn_next_semi(t_token *tkns_list, t_token *token,
 					int *status);
-int				check_word_token(t_token *tokens_list, t_token *token,
+int				check_word_token(t_token *tkns_list, t_token *token,
 					int *status);
-int				check_last_word_token(t_token *tokens_list, t_token *token,
+int				check_last_word_token(t_token *tkns_list, t_token *token,
 					int *status);
-int				check_first_token(t_token *tokens_list, t_token *first_token,
+int				check_first_token(t_token *tkns_list, t_token *first_token,
 					int *status);
-int				check_redirection(t_token *tokens_list, t_token *token,
+int				check_redirection(t_token *tkns_list, t_token *token,
 					int *status);
-int				check_tokn_nxt_pipe(t_token *tokens_list, t_token *token,
+int				check_tokn_nxt_pipe(t_token *tkns_list, t_token *token,
 					int *status);
 void			ft_print_systax_error(t_token *token);
 int				ft_check_backslash(char *word);

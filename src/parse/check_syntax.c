@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:07:42 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/23 16:07:43 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:17:55 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,44 +75,44 @@ int	ft_check_backslash(char *word)
 		return (0);
 }
 
-int	ft_check_word_semi_pipe_redir(t_token *tokens_list, t_token *token,
+int	ft_check_word_semi_pipe_redir(t_token *tkns_list, t_token *token,
 																	int *status)
 {
 	int	result;
 
 	result = 0;
 	if (token->type == NONE)
-		result = check_first_token(tokens_list, token->next, status);
+		result = check_first_token(tkns_list, token->next, status);
 	else if (token->type == GREAT || token->type == DOUBLE_GREAT
 		|| token->type == LESS)
-		result = check_redirection(tokens_list, token->next, status);
+		result = check_redirection(tkns_list, token->next, status);
 	else if (token->type == PIPE)
-		result = check_tokn_nxt_pipe(tokens_list, token->next, status);
+		result = check_tokn_nxt_pipe(tkns_list, token->next, status);
 	else if (token->type == SEMI)
-		result = check_tokn_next_semi(tokens_list, token->next, status);
+		result = check_tokn_next_semi(tkns_list, token->next, status);
 	else if (token->type == WORD)
-		result = check_word_token(tokens_list, token, status);
+		result = check_word_token(tkns_list, token, status);
 	return (result);
 }
 
-int	ft_check_syntax(t_token *tokens_list, int *status)
+int	ft_check_syntax(t_token *tkns_list, int *status)
 {
 	int		result;
 	t_token	*tmp;
 
 	result = 0;
-	tmp = tokens_list;
+	tmp = tkns_list;
 	while (tmp->type != NEWLINE)
 	{
 		if (tmp->type == WORD && tmp->next->type == NEWLINE)
 		{
-			result = check_last_word_token(tokens_list, tmp, status);
+			result = check_last_word_token(tkns_list, tmp, status);
 			if (result)
 				break ;
 		}
 		else
 		{
-			result = ft_check_word_semi_pipe_redir(tokens_list, tmp, status);
+			result = ft_check_word_semi_pipe_redir(tkns_list, tmp, status);
 			if (result)
 				break ;
 		}

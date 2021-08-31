@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_get_tokens_op.c                              :+:      :+:    :+:   */
+/*   lexer_get_tkns_op.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,32 +12,32 @@
 
 #include "../../headers/minishell.h"
 
-static void	get_redir(t_token *tokens_list, char *line, int *j, int *index)
+static void	get_redir(t_token *tkns_list, char *line, int *j, int *index)
 {
 	if (line[*j] == '>')
 	{
 		if (line[*j + 1] == '>')
 		{
-			add_token(tokens_list, DOUBLE_GREAT, ft_strdup(">>"), *index);
+			add_token(tkns_list, DOUBLE_GREAT, ft_strdup(">>"), *index);
 			*j = *j + 2;
 			(*index)++;
 		}
 		else
 		{
-			add_token(tokens_list, GREAT, ft_strdup(">"), *index);
+			add_token(tkns_list, GREAT, ft_strdup(">"), *index);
 			(*j)++;
 			(*index)++;
 		}
 	}
 	else if (line[*j] == '<')
 	{
-		add_token(tokens_list, LESS, ft_strdup("<"), *index);
+		add_token(tkns_list, LESS, ft_strdup("<"), *index);
 		(*j)++;
 		(*index)++;
 	}
 }
 
-void	get_space_pipe_semi_redir(t_token *tokens_list,
+void	get_space_pipe_semi_redir(t_token *tkns_list,
 							   char *line, int *j, int *index)
 {
 	char	*token;
@@ -48,7 +48,7 @@ void	get_space_pipe_semi_redir(t_token *tokens_list,
 			token = ft_strdup("||");
 		else
 			token = ft_strdup("|");
-		add_token(tokens_list, PIPE, token, *index);
+		add_token(tkns_list, PIPE, token, *index);
 		(*index)++;
 		(*j)++;
 	}
@@ -58,10 +58,10 @@ void	get_space_pipe_semi_redir(t_token *tokens_list,
 			token = ft_strdup(";;");
 		else
 			token = ft_strdup(";");
-		add_token(tokens_list, SEMI, token, *index);
+		add_token(tkns_list, SEMI, token, *index);
 		(*index)++;
 		(*j)++;
 	}
 	else
-		get_redir(tokens_list, line, j, index);
+		get_redir(tkns_list, line, j, index);
 }

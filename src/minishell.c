@@ -6,7 +6,7 @@
 /*   By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:10:22 by llucente          #+#    #+#             */
-/*   Updated: 2021/08/31 12:47:30 by llucente         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:17:55 by llucente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 
 void	ft_tkn_n_pars(char **line, t_pipe_line **current_pipe_line, int *status)
 {
-	t_token		*tokens_list;
+	t_token		*tkns_list;
 
-	tokens_list = NULL;
+	tkns_list = NULL;
 	if (*line)
 	{
-		tokens_list = ft_lexer(*line);
+		tkns_list = ft_lexer(*line);
 		free(*line);
 		*line = NULL;
 	}
-	if (tokens_list)
+	if (tkns_list)
 	{
-		g_vars.cmd = ft_parser(tokens_list, status);
-		tokens_list = NULL;
+		g_vars.cmd = ft_parser(tkns_list, status);
+		tkns_list = NULL;
 	}
 	if (g_vars.cmd)
 		*current_pipe_line = g_vars.cmd->childs;

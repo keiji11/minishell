@@ -6,7 +6,7 @@
 #    By: llucente <llucente@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/23 15:59:57 by llucente          #+#    #+#              #
-#    Updated: 2021/08/30 16:52:52 by llucente         ###   ########.fr        #
+#    Updated: 2021/08/31 15:17:55 by llucente         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,16 +54,16 @@ ft_utils.c
 
 # Lexer files variable
 
-LEX_FILES = lexer_get_tokens_op.c \
-lexer_get_tokens_word.c \
-lexer_get_tokens.c \
+LEX_FILES = lexer_get_tkns_op.c \
+lexer_get_tkns_word.c \
+lexer_get_tkns.c \
 lexer.c
 
 # Parse files variable
 
 PARS_FILES = check_syntax.c \
 check_token_continue.c \
-check_tokens.c \
+check_tkns.c \
 check_word.c \
 create_ast.c \
 create_nodes.c \
